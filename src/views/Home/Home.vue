@@ -25,13 +25,13 @@
 </template>
 <script>
 import "./home.scss";
-import drawLine from "../../functions/drawLine";
-import fadeOutLine from "../../functions/fadeOutLine";
+import drawLine from "../../helpers/drawLine";
+import fadeOutLine from "../../helpers/fadeOutLine";
+import initBackgroundCanvas from "@/helpers/initBackgroundCanvas";
 export default {
     name: "Home",
     data() {
         return {
-            backGroundCanvas: null,
             lastX: null,
             lastY: null,
             isFirst: true,
@@ -46,23 +46,7 @@ export default {
         });
     },
     mounted() {
-        let alpha = 0;
-        let canvas = document.getElementById("background-canvas");
-        let ctx = canvas.getContext("2d");
-        this.backGroundCanvas = ctx;
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        canvas.addEventListener("mousemove", (e) => {
-            if (this.isFirst) {
-                this.lastX = e.clientX;
-                this.lastY = e.clientY;
-                this.isFirst = false;
-            }
-            drawLine(ctx, e.clientX, e.clientY, this.lastX, this.lastY);
-            this.lastX = e.clientX;
-            this.lastY = e.clientY;
-        });
-        //fadeOutLine(ctx, canvas);
+        initBackgroundCanvas(this.lastX, this.lastY, this.isFirst);
     },
 };
 </script>
