@@ -1,0 +1,34 @@
+.userCard-wrapper {
+    display: flex;
+    margin-bottom: 10px;
+    height: 90px;
+    background-color: rgb(233, 233, 233);
+    border-radius: 10px;
+    .user {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 130px;
+
+        .nickname {
+            color: rgb(88, 88, 88);
+        }
+
+        .points {
+            color: rgb(66, 46, 139);
+        }
+    }
+
+    .avatar {
+        margin: 10px;
+        border-radius: 90px;
+        background-color: rgba(46, 139, 86, 0.781);
+        width: 70px;
+        height: 70px;
+        background-image: url("../../assets/avatar.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+}

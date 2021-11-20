@@ -1,7 +1,5 @@
 <template>
-    <div class="main-wrapper">
-        <div id="background-image"></div>
-        <canvas id="background-canvas" width="1920" height="800"></canvas>
+    <div class="home-wrapper">
         <div class="main-card">
             <div class="card-row">
                 <div class="quick-game">Hızlı Oyun</div>
@@ -9,15 +7,15 @@
                 <div class="nickname">
                     <span>Kullanıcı Adın</span>
                     <label class="text-input">
-                        <input type="text" />
+                        <input v-model="userName" type="text" />
                     </label>
                 </div>
                 <div class="play">
-                    <button>Oyna</button>
+                    <button @click="playBtnClickHandler">Oyna</button>
                 </div>
             </div>
             <div class="card-row or">
-                <span class="or-text">Veya</span>
+                <span class="or-text"></span>
             </div>
             <div class="card-row"></div>
         </div>
@@ -25,28 +23,19 @@
 </template>
 <script>
 import "./home.scss";
-import drawLine from "../../helpers/drawLine";
-import fadeOutLine from "../../helpers/fadeOutLine";
-import initBackgroundCanvas from "@/helpers/initBackgroundCanvas";
 export default {
     name: "Home",
     data() {
         return {
-            lastX: null,
-            lastY: null,
-            isFirst: true,
+            userName: "",
         };
     },
     components: {},
-    created() {
-        window.addEventListener("resize", () => {
-            let canvas = document.getElementById("background-canvas");
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-    },
-    mounted() {
-        initBackgroundCanvas(this.lastX, this.lastY, this.isFirst);
+    methods: {
+        playBtnClickHandler() {
+            this.$store.commit("setUserName", this.userName);
+            this.$router.push({ name: "Game" });
+        },
     },
 };
 </script>

@@ -1,0 +1,68 @@
+.game-wrapper {
+    display: grid;
+    width: 1200px;
+    height: 100vh;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    grid-template-columns: 0.7fr 1.3fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 20px 20px;
+    grid-template-areas:
+        "A B B"
+        "A B B"
+        "A C D";
+
+    .grid-item {
+        z-index: 4;
+        background-color: white;
+        border-radius: 20px;
+        position: relative;
+        min-height: 200px;
+
+        padding: 1.5rem 0.5rem;
+
+        &.players {
+            grid-area: A;
+            scrollbar-width: 2px;
+        }
+        &.white-board {
+            grid-area: B;
+            height: 600px;
+            padding: 0;
+            #whiteboard-canvas {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+        }
+        &.answers-chat {
+            grid-area: C;
+            padding: 0;
+            padding-bottom: 0px;
+            // border-bottom-left-radius: 0px;
+            // border-bottom-right-radius: 0px;
+        }
+        &.regular-chat {
+            grid-area: D;
+        }
+    }
+    @media only screen and (max-width: 1200px) {
+        width: 900px;
+    }
+    @media only screen and (max-width: 760px) {
+        width: 500px;
+        display: grid;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        grid-template-columns: 0.7fr 1.3fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 20px 20px;
+        grid-template-areas:
+            "B B B"
+            "B B B"
+            "C C C"
+            "D D D"
+            "A A A";
+    }
+}

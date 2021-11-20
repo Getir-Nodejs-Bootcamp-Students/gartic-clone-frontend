@@ -1,8 +1,9 @@
 function fadeOut(ctx, canvas) {
     ctx.fillStyle = "rgba(10, 94, 251,0.1)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
 
-    setTimeout(() => fadeOut(ctx, canvas), 50);
+    setTimeout(() => fadeOut(ctx, canvas), 2000);
 }
 
 export default fadeOut;
