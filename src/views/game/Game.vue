@@ -16,6 +16,7 @@
             <AnswersChat />
         </div>
         <div class="grid-item regular-chat">D</div>
+        <button @click="this.$socket.disconnect()">asdasd</button>
     </div>
 </template>
 
@@ -41,13 +42,24 @@ export default {
             console.log(time);
         },
     },
-    mounted() {
+    beforeMount() {
         this.$socket.connect();
+    },
+    mounted() {
+        console.log(this.$socket);
+        this.$socket.emit("room:join", { userName: this.$store.state.user, roomId: this.$route.params.roomId });
         initWhiteBoard(this.$socket);
-        this.$socket.emit("drawtime:get", (a) => {
-            console.log(a);
-        });
+
         console.log(this.$store.state.user);
+    },
+    unmounted() {
+        this.$socket.emit("room:leave", this.$route.params.roomId);
+    },
+    updated() {
+        this.$socket.emit("room:leave", this.$route.params.roomId);
+    },
+    beforeUnmount() {
+        this.$socket.emit("room:leave", this.$route.params.roomId);
     },
 };
 </script>

@@ -8,8 +8,8 @@ const routes = [
         component: Home,
     },
     {
-        path: "/game",
-        name: "Game",
+        path: "/game/:roomId",
+        name: "game",
         component: Game,
     },
 ];
