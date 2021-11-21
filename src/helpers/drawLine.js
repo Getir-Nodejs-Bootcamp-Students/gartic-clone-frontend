@@ -1,4 +1,4 @@
-function drawLine(context, x0, y0, x1, y1, color, lineWidth, socket, isSocket = true) {
+function drawLine(context, x0, y0, x1, y1, color, lineWidth, socket, isSocket = true,roomId) {
     console.log(x0);
     context.beginPath();
     context.moveTo(x0, y0);
@@ -12,6 +12,7 @@ function drawLine(context, x0, y0, x1, y1, color, lineWidth, socket, isSocket = 
     //var w = canvas.width;
     //var h = canvas.height;
     if (isSocket) {
+        console.log(roomId)
         socket.emit("canvas:draw", {
             x0: x0,
             y0: y0,
@@ -19,7 +20,7 @@ function drawLine(context, x0, y0, x1, y1, color, lineWidth, socket, isSocket = 
             y1: y1 || undefined,
             color: color,
             lineWidth: lineWidth,
-            room: 1,
+            roomId: roomId,
         });
     }
 }

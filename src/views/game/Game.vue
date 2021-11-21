@@ -47,8 +47,8 @@ export default {
     },
     mounted() {
         console.log(this.$socket);
-        this.$socket.emit("room:join", { userName: this.$store.state.user, roomId: this.$route.params.roomId });
-        initWhiteBoard(this.$socket);
+        this.$socket.emit("room:join", { userName: this.$store.state.user.name, roomId: this.$route.params.roomId });
+        initWhiteBoard(this.$socket,this.$route.params.roomId);
 
         console.log(this.$store.state.user);
     },

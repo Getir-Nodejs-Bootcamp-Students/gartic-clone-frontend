@@ -1,6 +1,6 @@
 import drawLine from "./drawLine";
 
-function initWhiteBoard(socket) {
+function initWhiteBoard(socket,roomId) {
   let lastX, lastY, isFirst, isDrawing;
   let canvas = document.getElementById("whiteboard-canvas");
   let ctx = canvas.getContext("2d");
@@ -12,6 +12,7 @@ function initWhiteBoard(socket) {
     canvas.width = 663.3;
     canvas.height = 600;
   }
+  console.log(roomId)
   canvas.addEventListener("mousemove", (e) => {
     if (isDrawing) {
       if (isFirst) {
@@ -27,7 +28,9 @@ function initWhiteBoard(socket) {
         lastY,
         "rgb(0,0,0)",
         3,
-        socket
+        socket,
+        true,
+        roomId
       );
       lastX = e.offsetX;
       lastY = e.offsetY;

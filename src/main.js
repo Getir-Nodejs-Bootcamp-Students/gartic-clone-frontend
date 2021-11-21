@@ -5,7 +5,7 @@ import VueSocketIO from "vue-socket.io";
 import { io } from "socket.io-client";
 import store from "./store";
 
-const socket = io("https://03d7-176-218-239-172.ngrok.io/", {
+const socket = io("https://135b-176-218-239-172.ngrok.io/", {
     transports: ["websocket", "polling", "flashsocket"],
     autoConnect: false,
 });
