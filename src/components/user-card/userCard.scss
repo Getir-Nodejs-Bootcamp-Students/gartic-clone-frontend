@@ -12,7 +12,16 @@
         width: 130px;
 
         .nickname {
+            display: flex;
+            white-space: nowrap;
+            align-items: flex-end;
             color: rgb(88, 88, 88);
+            .drawer {
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
         }
 
         .points {

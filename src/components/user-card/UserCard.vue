@@ -2,15 +2,32 @@
     <div class="userCard-wrapper">
         <div class="avatar"></div>
         <div class="user">
-            <div class="nickname">meroo36</div>
-            <div class="points">256pts</div>
+            <div class="nickname">
+                {{ userObj.userName }}
+                <div v-if="this.keyId === this.turnId" class="drawer">
+                    <img src="@/assets/pencil.png" alt="" />
+                </div>
+            </div>
+
+            <div class="points">{{ userObj.points }}</div>
         </div>
     </div>
 </template>
 
 <script>
 import "./userCard.scss";
-export default {};
+import { getCurrentInstance } from "vue";
+export default {
+    props: ["userObj", "turnId"],
+    data() {
+        return {
+            keyId: "",
+        };
+    },
+    mounted() {
+        this.keyId = getCurrentInstance().vnode.key;
+    },
+};
 </script>
 
 <style></style>
