@@ -29,11 +29,128 @@
             grid-area: B;
             height: 600px;
             padding: 0;
+
+            .timer {
+                position: absolute;
+                left: 50%;
+                top: 20px;
+                transform: translate(-50%, -50%);
+                margin-top: 20px;
+                padding: 20px;
+                font-weight: bold;
+                color: white;
+                border-radius: 20px;
+                background-color: #0a5efb;
+                box-shadow: 1px 10px 10px 3px #000000;
+                cursor: pointer;
+            }
             #whiteboard-canvas {
                 position: absolute;
                 width: 100%;
                 height: 100%;
                 overflow: hidden;
+            }
+            .owner-ui {
+                z-index: 3;
+                display: flex;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 20px;
+
+                .start-btn {
+                    font-weight: bold;
+                    color: white;
+                    border-radius: 20px;
+                    background-color: #0a5efb;
+                    box-shadow: 1px 10px 10px 3px #000000;
+                    padding: 20px;
+                    cursor: pointer;
+                }
+                .start-btn:active {
+                    transform: scale(1.1) perspective(1px);
+                }
+                .invite-lnk:active {
+                    transform: scale(1.1) perspective(1px);
+                }
+
+                .invite-lnk {
+                    font-weight: bold;
+                    color: white;
+                    border-radius: 20px;
+                    background-color: #0a5efb;
+                    box-shadow: 1px 10px 10px 3px #000000;
+                    padding: 20px;
+                    cursor: pointer;
+                    margin-left: 20px;
+                }
+            }
+
+            .player-ui {
+                z-index: 3;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 20px;
+
+                @keyframes waiting {
+                    0% {
+                        content: ".";
+                    }
+                    25% {
+                        content: "..";
+                    }
+                    50% {
+                        content: "...";
+                    }
+                    75% {
+                        content: "..";
+                    }
+                    100% {
+                        content: ".";
+                    }
+                }
+
+                .waiting::after {
+                    width: 100px;
+                    content: ".";
+                    animation-name: waiting;
+                    animation-duration: 3s;
+                    animation-iteration-count: infinite;
+                }
+            }
+
+            .word-ui {
+                z-index: 3;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 20px;
+
+                .word {
+                    font-weight: bold;
+                    color: white;
+                    border-radius: 20px;
+                    background-color: #0a5efb;
+                    box-shadow: 1px 10px 10px 3px #000000;
+                    padding: 20px;
+                    cursor: pointer;
+                    margin-left: 20px;
+                }
+                .word:active {
+                    transform: scale(1.1) perspective(1px);
+                }
             }
         }
         &.answers-chat {
