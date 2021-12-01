@@ -109,7 +109,7 @@ export default {
         //console.log(this.$socket);
     },
     mounted() {
-        //console.log(this.$socket);
+        console.log(this.$socket);
         this.$socket.emit("room:join", { userName: this.$store.state.user.name, roomId: this.$route.params.roomId });
         initWhiteBoard(this.$socket, this.$route.params.roomId);
 

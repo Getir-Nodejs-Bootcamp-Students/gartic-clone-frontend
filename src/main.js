@@ -6,7 +6,7 @@ import VueToast from "vue-toast-notification";
 import { io } from "socket.io-client";
 import store from "./store";
 
-const socket = io("https://1a54-149-0-41-215.ngrok.io/", {
+const socket = io("https://c220-149-0-2-137.ngrok.io/", {
     transports: ["websocket", "polling", "flashsocket"],
     autoConnect: false,
 });
