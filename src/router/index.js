@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Home from "../views/home/Home.vue";
 import Game from "../views/game/Game.vue";
+import AddWord from "../views/word/addWord/AddWord.vue";
 const routes = [
     {
         path: "/",
@@ -11,6 +12,14 @@ const routes = [
         path: "/game/:roomId",
         name: "game",
         component: Game,
+    },
+    {
+        path: "/join/:roomId",
+    },
+    {
+        path: "/addWord/",
+        name: "AddWord",
+        component: AddWord,
     },
 ];
 

@@ -1,10 +1,10 @@
 import drawLine from "./drawLine";
 
+
 export function userCanDraw(socket, roomId) {
     let lastX, lastY, isFirst, isDrawing;
     let canvas = document.getElementById("whiteboard-canvas");
     let ctx = canvas.getContext("2d");
-    console.log("girdi");
     canvas.addEventListener("mousemove", (e) => {
         if (isDrawing) {
             if (isFirst) {
@@ -29,9 +29,8 @@ export function userCanDraw(socket, roomId) {
 
 export function userCantDraw() {
     let canvas = document.getElementById("whiteboard-canvas");
-    canvas.removeEventListener("mousemove");
-    canvas.removeEventListener("mousedown");
-    canvas.removeEventListener("mouseup");
+    let canvasClone = canvas.cloneNode(true);
+    canvas.parentNode.replaceChild(canvasClone, canvas);
 }
 
 export default { userCanDraw, userCantDraw };

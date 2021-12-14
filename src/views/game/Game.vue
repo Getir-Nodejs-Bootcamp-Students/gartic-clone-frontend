@@ -24,7 +24,7 @@
             <canvas id="whiteboard-canvas"></canvas>
         </div>
         <div class="grid-item answers-chat">
-            <AnswersChat />
+            <AnswersChat :gameState="gameState" />
         </div>
         <div class="grid-item regular-chat">D</div>
     </div>
@@ -32,11 +32,13 @@
 
 <script>
 import "./game.scss";
-import initWhiteBoard from "@/helpers/initWhiteBoard";
+import initWhiteboard from "@/helpers/initWhiteboard";
 import UserCard from "@/components/user-card/UserCard";
 import AnswersChat from "@/components/answers-chat/AnswersChat";
 import drawLine from "@/helpers/drawLine";
+import clearWhiteboard from "@/helpers/clearWhiteboard";
 import { userCanDraw, userCantDraw } from "@/helpers/eventListeners";
+import config from "@/config/index.js";
 export default {
     name: "Game",
     data() {
@@ -83,20 +85,16 @@ export default {
         "time:remaining": function (time) {
             this.timer = time;
         },
+        "canvas:clear": function () {
+            clearWhiteboard();
+        },
     },
     methods: {
         startGameHandler: function () {
             this.$socket.emit("game:start", { roomId: this.$route.params.roomId });
         },
         linkHandler: function () {
-            navigator.clipboard.writeText("http://localhost:3000/join/" + this.$route.params.roomId);
-            console.log(this.$toast);
-            // this.$toast.open({
-            //     message: "Test message from Vue",
-            //     type: "success",
-            //     duration: 200000,
-            //     dismissible: true,
-            // });
+            navigator.clipboard.writeText(config.SERVER_URL + "/join/" + this.$route.params.roomId);
         },
         onWordPicked: function (event) {
             this.$socket.emit("game:wordPicked", event.target.value);
@@ -109,9 +107,10 @@ export default {
         //console.log(this.$socket);
     },
     mounted() {
-        //console.log(this.$socket);
+        console.log(userCantDraw)
+        console.log(this.$socket);
         this.$socket.emit("room:join", { userName: this.$store.state.user.name, roomId: this.$route.params.roomId });
-        initWhiteBoard(this.$socket, this.$route.params.roomId);
+        initWhiteboard(this.$socket, this.$route.params.roomId);
 
         //console.log(this.$store.state.user);
     },

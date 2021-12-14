@@ -19,6 +19,9 @@
         }
     }
 
+    .correct-answer {
+        color: rgb(38, 192, 38);
+    }
     .chat-messages > .message:nth-child(odd) {
         background-color: rgb(233, 233, 233);
     }
