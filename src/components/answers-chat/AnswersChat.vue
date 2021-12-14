@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="send-message">
-            <input v-model="this.message" type="text" @keyup.enter="onMessageSubmit" />
+            <input :disabled="gameState == false" v-model="this.message" type="text" @keyup.enter="onMessageSubmit" />
         </div>
     </div>
 </template>
@@ -16,6 +16,7 @@
 <script>
 import "./answersChat.scss";
 export default {
+    props: ["gameState"],
     data() {
         return {
             message: "",
@@ -59,7 +60,7 @@ export default {
         },
     },
     mounted() {
-        console.log(this.$socket);
+        //console.log("gameState",this.gameState);
     },
 };
 </script>
